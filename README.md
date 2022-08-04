@@ -10,7 +10,7 @@ This is a Python 3.10 bot, with a couple dependencies.
 They can be installed with
 
 ```sh
-$ pip install numpy zo-sdk ftx solana
+$ pip install numpy zo-sdk ftx solana python-dotenv
 ```
 
 Alternatively, if you use poetry, you can simply use
@@ -23,9 +23,7 @@ The code imports many env variables, all of which are defined in [`.env.example`
 All of these should be defined to run the bot, which can be done as so:
 
 ```sh
-$ cp .env.example
-# Fill out the variables
-$ source .env
+$ cp .env.example .env  # And fill out the fields
 ```
 
 ## Running
@@ -34,5 +32,5 @@ Now you're ready to run the bot.
 
 ```sh
 $ poetry shell  # If you're using poetry
-$ python run src/main.py
+$ python main.py
 ```

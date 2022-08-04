@@ -1,7 +1,7 @@
 import ftx
 import numpy as np
 
-from trading_types import *
+from .types import *
 
 
 class FtxClearingHouse:

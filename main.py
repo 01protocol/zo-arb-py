@@ -8,9 +8,9 @@ from solana.rpc.commitment import Confirmed, Finalized, Processed
 from solana.rpc.types import TxOpts
 from zo import Zo
 
-from arb import Arbitragoor
-from ftx_house import FtxClearingHouse
-from zo_house import ZoClearingHouse
+from src import Arbitragoor
+from src import FtxClearingHouse
+from src import ZoClearingHouse
 
 
 async def main():

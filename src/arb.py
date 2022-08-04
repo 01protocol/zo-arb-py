@@ -1,8 +1,8 @@
 import asyncio
 
-from ftx_house import FtxClearingHouse
-from trading_types import *
-from zo_house import ZoClearingHouse
+from .ftx_house import FtxClearingHouse
+from .types import *
+from .zo_house import ZoClearingHouse
 
 
 class Arbitragoor:

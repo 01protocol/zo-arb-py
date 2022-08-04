@@ -2,7 +2,7 @@ import numpy as np
 from solana.rpc.commitment import Processed
 from zo import Zo
 
-from trading_types import *
+from .types import *
 
 
 class ZoClearingHouse:
