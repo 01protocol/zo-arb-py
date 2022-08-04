@@ -2,7 +2,7 @@ import numpy as np
 from solana.rpc.commitment import Processed
 from zo import Zo
 
-from .types import *
+from trading_types import *
 
 
 class ZoClearingHouse:
@@ -21,6 +21,9 @@ class ZoClearingHouse:
         self.fetch_market_symbols()
         self.fetch_markets()
 
+    async def init_data(self):
+        await self.fetch_all()
+
         self.start_val = self.fetch_account_value()
 
     async def refresh(self) -> None:
@@ -29,17 +32,15 @@ class ZoClearingHouse:
     async def fetch_all(self) -> None:
         await self.__client.refresh()
 
-        promise = self.fetch_orderbooks()
         self.fetch_market_symbols()
+        await self.fetch_orderbooks()
         self.fetch_markets()
         self.fetch_indices()
         self.fetch_positions()
-        await promise
 
     def fetch_market_symbols(self) -> list[str]:
         """Fetch all the available markets that can be traded on."""
         self.market_symbols = list(self.__client.markets.d.keys())
-        self.market_symbols.remove("LUNA-PERP")
 
         return self.market_symbols
 

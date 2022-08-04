@@ -1,9 +1,7 @@
-import asyncio
-
 import ftx
 import numpy as np
 
-from .types import *
+from trading_types import *
 
 
 class FtxClearingHouse:
@@ -28,10 +26,10 @@ class FtxClearingHouse:
     async def refresh(self) -> None:
         pass
 
-    async def fetch_all(self) -> None:
+    async def fetch_all(self, markets: (list[str] | None) = None) -> None:
         self.fetch_positions()
         self.fetch_indices()
-        self.fetch_orderbooks()
+        self.fetch_orderbooks(markets)
         self.fetch_account_value()
 
     def fetch_market_symbols(self) -> list[str]:
@@ -57,7 +55,9 @@ class FtxClearingHouse:
             price_increment = float(market["priceIncrement"])
             size_increment = float(market["sizeIncrement"])
 
-            self.marks[market["name"]] = (market["ask"] + market["bid"]) / 2
+            if not (market["ask"] == None or market["bid"] == None):
+                self.marks[market["name"]] = (market["ask"] + market["bid"]) / 2
+
             self.markets[market["name"]] = MarketInfo(price_increment, size_increment)
 
         return self.markets
